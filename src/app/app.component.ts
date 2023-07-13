@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import Chart from 'chart.js/auto';
-
+import { ChartService } from './services/chart.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,18 +10,19 @@ export class AppComponent {
   title = 'ng-chart';
   chart: any = [];
  
-  constructor() {}
+  constructor(public chartService:ChartService) {}
 
   ngOnInit() {
     this.chart = new Chart('canvas', {
       type: 'bar',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: this.chartService.extractTimeData("published", this.chartService.data) || [],
         datasets: [
           {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Impact',
+            data: this.chartService.extractData("score", this.chartService.data) || [],
             borderWidth: 1,
+            backgroundColor:this.chartService.extractColor("sentiment",this.chartService.data) || []
           },
         ],
       },
@@ -31,7 +32,16 @@ export class AppComponent {
             beginAtZero: true,
           },
         },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              footer: (tooltipItems)=>this.chartService.footer(tooltipItems, this.chartService.data),
+            }
+          }
+        }
       },
     });
   }
+
+ 
 }
