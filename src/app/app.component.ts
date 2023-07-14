@@ -13,6 +13,7 @@ export class AppComponent {
   constructor(public chartService:ChartService) {}
 
   ngOnInit() {
+    this.chartService.fetchChartData()
     this.chart = new Chart('canvas', {
       type: 'bar',
       data: {
