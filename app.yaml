@@ -4,10 +4,10 @@ threadsafe: yes
 
 handlers:
   - url: /
-    static_files: dist/user-dashboard-app/index.html
-    upload: dist/user-dashboard-app/index.html
+    static_files: dist/ng-chart/index.html
+    upload: dist/ng-chart/index.html
   - url: /
-    static_dir: dist/user-dashboard-app
+    static_dir: dist/ng-chart
 
 skip_files:
   - e2e/
