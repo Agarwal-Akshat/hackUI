@@ -67,8 +67,10 @@ export class CandleChartComponent implements AfterViewInit {
         id: this.widgetId,
         chartOnly: false,
         // 'width': 1000,
-        height: 300,
+        symbol:"EURUSD",
+        height: 500,
         autosize: true,
+        
         locale: 'en',
         colorTheme: 'light',
         gridLineColor: '#F0F3FA',
