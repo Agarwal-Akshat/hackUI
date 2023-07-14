@@ -40,7 +40,8 @@ export class ChartService {
   }
 
   footer(tooltipItems: any, data: any) {
-    return this.data[0].summary;
+    console.log('TOOLTIP : ', tooltipItems)
+    return this.data[tooltipItems && tooltipItems[0] && tooltipItems[0].dataIndex].summary;
   };
 
 
